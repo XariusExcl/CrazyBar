@@ -9,13 +9,11 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     bool isGameOver = false;
     
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -29,7 +27,7 @@ public class GameManager : MonoBehaviour
             playerController.GameOver();
             plateauController.Fall();
 
-            // Explode
+            // Explode objects on plateau
             GameObject[] objects;
             objects = GameObject.FindGameObjectsWithTag("Object");
             
@@ -43,6 +41,8 @@ public class GameManager : MonoBehaviour
                     10f
                 );
             }
+
+            isGameOver = true;
         }
         
         // TODO: Affiher menus retry

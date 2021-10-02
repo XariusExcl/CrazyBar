@@ -7,13 +7,12 @@ public class PlateauController : MonoBehaviour
     new Rigidbody2D rigidbody2D;
     public GameManager gameManager;
     public float maxTilt; 
-    // Start is called before the first frame update
+
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         float angle = transform.rotation.eulerAngles.z;
@@ -31,14 +30,7 @@ public class PlateauController : MonoBehaviour
 
         float torque = angle + rigidbody2D.angularVelocity;
 
-        /*
-        rigidbody2D.AddTorque(Mathf.Clamp(
-            -(angle+rigidbody2D.angularVelocity),
-            -200f, 
-            200f
-        ));
-        */
-
+        // Force to try to balance the plateau
         rigidbody2D.AddTorque(-(angle+rigidbody2D.angularVelocity));
 
         // Debug.Log(angle);
