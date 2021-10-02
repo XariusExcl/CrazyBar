@@ -41,9 +41,13 @@ public class Object : MonoBehaviour
                 isOnPlateau = true;
             } else {
                 // Object fell on ground
-                Destroy(this.gameObject);
+                // Destroy(this.gameObject);
                 gameManager.GameOver();
             }
+        } else if (col.transform.tag == "World") {
+            // Object fell from plateau to ground
+            // Destroy(this.gameObject);
+            gameManager.GameOver();
         }
     }
 }   
