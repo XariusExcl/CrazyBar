@@ -7,7 +7,7 @@ public class Object : MonoBehaviour
     GameManager gameManager;
     public float dampingRatio;
     new Rigidbody2D rigidbody2D;
-    bool isOnPlateau = false;
+    public bool isOnPlateau = false;
     
     void Start()
     {
@@ -17,9 +17,11 @@ public class Object : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        string colliderTag = col.transform.tag;
+
         if (!isOnPlateau)
         {
-            if (col.transform.tag == "Plateau" || col.transform.tag == "Object")
+            if (colliderTag == "Plateau" || ( colliderTag == "Object" && col.transform.GetComponent<Object>().isOnPlateau ))
             {
                 ContactPoint2D contact = col.GetContact(0);
                 float contactAngle = Vector2.Angle(contact.normal, Vector2.right);
@@ -35,16 +37,16 @@ public class Object : MonoBehaviour
                     joint.connectedBody = oTransform.GetComponentInParent<Rigidbody2D>();
                     joint.enableCollision = false;
                     joint.dampingRatio = dampingRatio;
-                }
 
-                // Prevent further collisions
-                isOnPlateau = true;
+                    // Prevent further collisions
+                    isOnPlateau = true;
+                }
             } else {
                 // Object fell on ground
                 // Destroy(this.gameObject);
                 gameManager.GameOver();
             }
-        } else if (col.transform.tag == "World") {
+        } else if (colliderTag == "World") {
             // Object fell from plateau to ground
             // Destroy(this.gameObject);
             gameManager.GameOver();
