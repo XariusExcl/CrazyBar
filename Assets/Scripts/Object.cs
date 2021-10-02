@@ -22,19 +22,25 @@ public class Object : MonoBehaviour
             if (col.transform.tag == "Plateau" || col.transform.tag == "Object")
             {
                 ContactPoint2D contact = col.GetContact(0);
-                Transform oTransform = contact.collider.transform;
-                rigidbody2D.SetRotation(oTransform.rotation.eulerAngles.z);
+                float contactAngle = Vector2.Angle(contact.normal, Vector2.right);
 
-                FixedJoint2D joint = gameObject.AddComponent<FixedJoint2D>(); 
-                joint.anchor = (Vector2)transform.position - contact.point;
-                joint.connectedBody = oTransform.GetComponentInParent<Rigidbody2D>();
-                joint.enableCollision = false;
-                joint.dampingRatio = dampingRatio;
+                // If angle good enough, stick to plateau/object
+                if (contactAngle > 45f && contactAngle < 135f)
+                {
+                    Transform oTransform = contact.collider.transform;
+                    rigidbody2D.SetRotation(oTransform.rotation.eulerAngles.z);
 
-                // transform.parent = oTransform;
+                    FixedJoint2D joint = gameObject.AddComponent<FixedJoint2D>(); 
+                    joint.anchor = (Vector2)transform.position - contact.point;
+                    joint.connectedBody = oTransform.GetComponentInParent<Rigidbody2D>();
+                    joint.enableCollision = false;
+                    joint.dampingRatio = dampingRatio;
+                }
 
+                // Prevent further collisions
                 isOnPlateau = true;
             } else {
+                // Object fell on ground
                 Destroy(this.gameObject);
                 gameManager.GameOver();
             }
