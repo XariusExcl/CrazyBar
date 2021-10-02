@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    public GameObject thing;
+    public GameObject[] props;
     public float spawnInterval;
     float currentRemaining;
     bool enableSpawning = true;
@@ -20,7 +20,7 @@ public class ObjectSpawner : MonoBehaviour
         {
             if(currentRemaining < 0f)
             {
-                Instantiate(thing, new Vector2(Random.Range(-6f, 6f), 5f), Quaternion.identity);
+                Instantiate(GetRandomProp(), new Vector2(Random.Range(-6f, 6f), 5f), Quaternion.identity);
                 // Debug.Log("Spawned object!");
                 currentRemaining = spawnInterval;
             } else {
@@ -32,5 +32,10 @@ public class ObjectSpawner : MonoBehaviour
     public void StopSpawning()
     {
         enableSpawning = false;
+    }
+
+    public GameObject GetRandomProp()
+    {
+        return props[Random.Range(0, props.Length)];
     }
 }
