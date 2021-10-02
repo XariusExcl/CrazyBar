@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public ObjectSpawner objectSpawner;
     public PlateauController plateauController;
     public PlayerController playerController;
+    public UIController uIController;
     bool isGameOver = false;
     
     void Start()
@@ -43,9 +44,7 @@ public class GameManager : MonoBehaviour
             }
 
             isGameOver = true;
+            uIController.ShowPopup();
         }
-        
-        // TODO: Affiher menus retry
-
     }
 }
