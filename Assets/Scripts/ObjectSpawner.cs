@@ -9,6 +9,11 @@ public class ObjectSpawner : MonoBehaviour
     float currentRemaining;
     bool enableSpawning = true;
 
+    void Start()
+    {
+        currentRemaining = spawnInterval;
+    }
+
     void Update()
     {
         if (enableSpawning)
