@@ -14,20 +14,26 @@ public class UIController : MonoBehaviour
         anim.Play("PopIn");
     }
 
+    public void StartBtn()
+    {
+        blackFade.GetComponent<Animator>().SetTrigger("FadeOut");
+        StartCoroutine("RestartLevelCoroutine"); // :)
+    }
+
     public void RetryBtn()
     {
         blackFade.GetComponent<Animator>().SetTrigger("FadeOut");
         StartCoroutine("RestartLevelCoroutine");
     }
 
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene("SampleScene");
-    }
-
     IEnumerator RestartLevelCoroutine()
     {
         yield return new WaitForSeconds(0.6f);
-        RestartLevel();
+        LoadLevel("SampleScene");
+    }
+
+    public void LoadLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
     }
 }
