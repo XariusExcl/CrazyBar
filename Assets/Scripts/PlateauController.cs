@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlateauController : MonoBehaviour
 {
     new Rigidbody2D rigidbody2D;
-    public GameManager gameManager;
+    GameManager gameManager;
     public float maxTilt; 
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        Debug.Log(gameManager);
     }
 
     void FixedUpdate()
