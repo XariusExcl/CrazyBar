@@ -12,7 +12,6 @@ public class PlateauController : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-        Debug.Log(gameManager);
     }
 
     void FixedUpdate()

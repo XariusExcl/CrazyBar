@@ -29,6 +29,17 @@ public class GameManager : MonoBehaviour
         // Debug.Log("OnSceneLoaded: " + scene.name);
         // Debug.Log(mode);
         sceneLoadedTime = Time.realtimeSinceStartup;
+
+        objectSpawner = GameObject.FindGameObjectWithTag("ObjectSpawner").GetComponent<ObjectSpawner>();
+        plateauController = GameObject.FindGameObjectWithTag("Plateau").GetComponent<PlateauController>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        uIController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
+        isGameOver = false;
+
+        if (retryCount == 0)
+        {
+            uIController.ShowTutorial();
+        }
     }
 
     void Awake()
@@ -43,20 +54,9 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    // called third
     void Start()
     {
         Application.targetFrameRate = 60;
-        objectSpawner = GameObject.FindGameObjectWithTag("ObjectSpawner").GetComponent<ObjectSpawner>();
-        plateauController = GameObject.FindGameObjectWithTag("Plateau").GetComponent<PlateauController>();
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        uIController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
-        isGameOver = false;
-
-        if (retryCount == 0)
-        {
-            uIController.ShowTutorial();
-        }
     }
 
     float pitch;
