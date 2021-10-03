@@ -9,10 +9,12 @@ public class UIController : MonoBehaviour
     public GameObject tutorialPrompt;
     public GameObject blackFade;
 
-    public void ShowPopup()
+    public void ShowPopup(int score, int hiScore, bool isHighScore)
     {
         Animation anim = retryPrompt.GetComponent<Animation>();
         anim.Play("PopIn");
+
+        // TODO show score hiscore
     }
 
     public void ShowTutorial()

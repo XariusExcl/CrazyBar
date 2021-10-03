@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public UIController uIController;
     public AudioManager audioManager;
+    public ScoreManager scoreManager;
     bool isGameOver = false;
     float sceneLoadedTime;
     float gameOverTime;
+    int hiScore;
     
     // called first
     void OnEnable()
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         uIController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
         audioManager = GameObject.FindGameObjectWithTag("Jukebox").GetComponent<AudioManager>();
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         isGameOver = false;
 
         if (retryCount == 0)
@@ -97,7 +100,16 @@ public class GameManager : MonoBehaviour
 
             isGameOver = true;
             gameOverTime = Time.realtimeSinceStartup;
-            uIController.ShowPopup();
+
+            int score = scoreManager.GetScore();
+            bool isHighScore = false;
+            if (score > hiScore)
+            {
+                hiScore = score;
+                isHighScore = true;
+            }
+
+            uIController.ShowPopup(score, hiScore, isHighScore);
         }
     }
 }

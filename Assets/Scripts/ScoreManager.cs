@@ -5,20 +5,20 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public float defaultScore;
+    public int defaultScore;
     public TMP_Text scoreUI;
     public TMP_Text comboUI;
-    float score;
-    float combo = 1f;
+    int score;
+    int combo = 1;
     GameObject lastProp;
 
-    public void AddToScore(float value, bool comboing)
+    public void AddToScore(int value, bool comboing)
     {
         if(comboing)
         {
-            combo = combo + 1f;
+            combo++;
         } else {
-            combo = 1f;
+            combo = 1;
         }
         score = score + combo;
         scoreUI.text = score.ToString();
@@ -33,5 +33,10 @@ public class ScoreManager : MonoBehaviour
     public void AddLastProp(GameObject newProp)
     {
         lastProp = newProp;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }

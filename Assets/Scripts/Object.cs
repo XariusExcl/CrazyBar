@@ -57,13 +57,13 @@ public class Object : MonoBehaviour
                     if(isProp(col))
                     {
                         scoreManager.AddToScore(
-							1f, 
+							1, 
 							GameObject.ReferenceEquals(col.gameObject, scoreManager.GetLastProp()) 
 							? true 
 							: false
 						);
                     } else {
-                        scoreManager.AddToScore(1f, false);
+                        scoreManager.AddToScore(1, false);
                     }
 					scoreManager.AddLastProp(gameObject);
                     sfxGood.Play();
