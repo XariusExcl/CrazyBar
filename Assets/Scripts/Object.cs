@@ -46,8 +46,6 @@ public class Object : MonoBehaviour
 					
                     if(isProp(col))
                     {
-						Debug.Log(col.gameObject);
-						Debug.Log(scoreManager.GetLastProp());
                         scoreManager.AddToScore(
 							1f, 
 							GameObject.ReferenceEquals(col.gameObject, scoreManager.GetLastProp()) 
