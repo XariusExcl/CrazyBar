@@ -791,6 +791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 736198074}
   - component: {fileID: 736198075}
+  - component: {fileID: 736198076}
   m_Layer: 0
   m_Name: SpriteHolder
   m_TagString: Untagged
@@ -806,7 +807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736198073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01, z: 0}
+  m_LocalPosition: {x: 0, y: 0.06000019, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.6}
   m_Children: []
   m_Father: {fileID: 1450664572}
@@ -853,7 +854,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 5266870713966031480, guid: 72e5f57aba0724131ac011b2bf132e0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -864,6 +865,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &736198076
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736198073}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e7a42fac8b9a47dea459bd627063db7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &933223235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1711,7 @@ MonoBehaviour:
   sprintReloadRate: 30
   sprintDuration: 100
   staminaBar: {fileID: 933223237}
+  spriteHolder: {fileID: 736198073}
 --- !u!4 &1450664572
 Transform:
   m_ObjectHideFlags: 0
@@ -1743,7 +1764,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0.7915716}
-  m_ConnectedAnchor: {x: 0, y: -1.6802164}
+  m_ConnectedAnchor: {x: 0, y: -2.0648334}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2250,7 +2271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804222900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.0099999, z: 0}
+  m_LocalPosition: {x: 0, y: 1.06, z: 0}
   m_LocalScale: {x: 4.3, y: 0.13, z: 1}
   m_Children:
   - {fileID: 1857597852}
@@ -2286,7 +2307,7 @@ FixedJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 5.999998}
+  m_ConnectedAnchor: {x: 0, y: 6}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &1834456956
