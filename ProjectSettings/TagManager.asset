@@ -8,6 +8,8 @@ TagManager:
   - Plateau
   - Object
   - ScoreManager
+  - ObjectSpawner
+  - UI
   layers:
   - Default
   - TransparentFX
