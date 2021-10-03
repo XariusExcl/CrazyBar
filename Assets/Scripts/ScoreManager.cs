@@ -8,16 +8,20 @@ public class ScoreManager : MonoBehaviour
     public int defaultScore;
     public TMP_Text scoreUI;
     public TMP_Text comboUI;
-    int score;
+    public AudioSource comboSound;
     int combo = 1;
+    int score;
     GameObject lastProp;
 
     public void AddToScore(int value, bool comboing)
     {
         if(comboing)
         {
+            comboSound.Play();
+            comboSound.pitch = comboSound.pitch + 0.1f; 
             combo++;
         } else {
+            comboSound.pitch = 1f;
             combo = 1;
         }
         score = score + combo;

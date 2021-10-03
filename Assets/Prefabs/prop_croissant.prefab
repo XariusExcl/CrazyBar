@@ -50,7 +50,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampingRatio: -20.16
   sfxGood: {fileID: 3319270641185843883}
-  sfxBad: {fileID: 0}
   isOnPlateau: 0
 --- !u!212 &3212897718867288778
 SpriteRenderer:
@@ -172,7 +171,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f0664a2d6a24c48d7b5d4d61208cf239, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
