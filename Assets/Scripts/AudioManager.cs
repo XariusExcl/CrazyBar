@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("GameController");
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Jukebox");
 
         if (objs.Length > 1)
         {
