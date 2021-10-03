@@ -7,10 +7,13 @@ public class Object : MonoBehaviour
     GameManager gameManager;
     public float dampingRatio;
     new Rigidbody2D rigidbody2D;
+    
+    ScoreManager scoreManager;
     public bool isOnPlateau = false;
     
     void Start()
     {
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
@@ -21,7 +24,7 @@ public class Object : MonoBehaviour
 
         if (!isOnPlateau)
         {
-            if (colliderTag == "Plateau" || ( colliderTag == "Object" && col.transform.GetComponent<Object>().isOnPlateau ))
+            if (colliderTag == "Plateau" || isProp(col))
             {
                 ContactPoint2D contact = col.GetContact(0);
                 float contactAngle = Vector2.Angle(contact.normal, Vector2.right);
@@ -40,16 +43,34 @@ public class Object : MonoBehaviour
 
                     // Prevent further collisions
                     isOnPlateau = true;
+					
+                    if(isProp(col))
+                    {
+						Debug.Log(col.gameObject);
+						Debug.Log(scoreManager.GetLastProp());
+                        scoreManager.AddToScore(
+							1f, 
+							GameObject.ReferenceEquals(col.gameObject, scoreManager.GetLastProp()) 
+							? true 
+							: false
+						);
+                    } else {
+                        scoreManager.AddToScore(1f, false);
+                    }
+					scoreManager.AddLastProp(gameObject);
                 }
             } else {
                 // Object fell on ground
-                // Destroy(this.gameObject);
                 gameManager.GameOver();
             }
         } else if (colliderTag == "World") {
             // Object fell from plateau to ground
-            // Destroy(this.gameObject);
             gameManager.GameOver();
         }
+    }
+
+    bool isProp(Collision2D col)
+    {
+        return col.transform.tag == "Object" && col.transform.GetComponent<Object>().isOnPlateau;
     }
 }   
