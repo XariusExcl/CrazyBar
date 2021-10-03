@@ -7,6 +7,7 @@ TagManager:
   - World
   - Plateau
   - Object
+  - ScoreManager
   layers:
   - Default
   - TransparentFX

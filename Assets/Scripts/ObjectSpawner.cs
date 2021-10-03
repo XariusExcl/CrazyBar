@@ -6,25 +6,34 @@ public class ObjectSpawner : MonoBehaviour
 {
     public GameObject[] props;
     public float spawnInterval;
-    float currentRemaining;
+    public float updateDifficultyEvery;
+    public float updateSpeedBy;
+    float currentIntervalRemaining;
+
+    float counter = 0f;
     bool enableSpawning = true;
 
     void Start()
     {
-        currentRemaining = spawnInterval;
+        currentIntervalRemaining = spawnInterval;
     }
 
     void Update()
     {
         if (enableSpawning)
         {
-            if(currentRemaining < 0f)
+            if(currentIntervalRemaining < 0f)
             {
                 Instantiate(GetRandomProp(), new Vector2(Random.Range(-6f, 6f), 5f), Quaternion.identity);
-                // Debug.Log("Spawned object!");
-                currentRemaining = spawnInterval;
+                if(counter == updateDifficultyEvery) {
+                    counter = 0f;
+                    spawnInterval = spawnInterval / updateSpeedBy;
+                } else {
+                    counter += 1f;
+                }
+                currentIntervalRemaining = spawnInterval;
             } else {
-                currentRemaining -= Time.deltaTime;
+                currentIntervalRemaining -= Time.deltaTime;
             }
         }
     }
