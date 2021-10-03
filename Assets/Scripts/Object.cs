@@ -43,6 +43,8 @@ public class Object : MonoBehaviour
 
                     // Prevent further collisions
                     isOnPlateau = true;
+                    
+                    Destroy(transform.GetChild(0).gameObject);
 
 					// Combo system if collision is on props
 					
