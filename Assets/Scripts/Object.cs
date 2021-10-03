@@ -8,6 +8,9 @@ public class Object : MonoBehaviour
     public float dampingRatio;
     new Rigidbody2D rigidbody2D;
     GameObject glow;
+    public AudioSource sfxGood;
+    public AudioSource sfxBad;
+    
     ScoreManager scoreManager;
     public bool isOnPlateau = false;
     
@@ -64,9 +67,11 @@ public class Object : MonoBehaviour
                         scoreManager.AddToScore(1f, false);
                     }
 					scoreManager.AddLastProp(gameObject);
+                    sfxGood.Play();
                 }
             } else {
                 // Object fell on ground
+                sfxBad.Play();
                 gameManager.GameOver();
 
                 // Prevent further collisions

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float sprintSpeed = 20f;
     public float sprintReloadRate = 30f;
     public float sprintDuration = 100f;
+    public AudioSource fail;
     float currentPlayerSpeed;
     public Image staminaBar;
     float stamina = 100f;
@@ -85,6 +86,7 @@ public class PlayerController : MonoBehaviour
     public void GameOver()
     {
         freezeMovement = true;
+        fail.Play();
         Destroy(hand);
         spriteHolder.GetComponent<Animator>().SetTrigger("Failed");
     }

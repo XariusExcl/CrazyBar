@@ -8,6 +8,7 @@ public class ObjectSpawner : MonoBehaviour
     public float spawnInterval;
     public float updateDifficultyEvery;
     public float updateSpeedBy;
+    public AudioSource freefall;
     public BarmanController barman;
     float currentIntervalRemaining;
 
@@ -44,6 +45,7 @@ public class ObjectSpawner : MonoBehaviour
     public void SpawnObject()
     {
         Instantiate(GetRandomProp(), new Vector2(Random.Range(-6f, 6f), 6f), Quaternion.identity);
+        freefall.PlayDelayed(0.3f);
     }
 
     public void StopSpawning()

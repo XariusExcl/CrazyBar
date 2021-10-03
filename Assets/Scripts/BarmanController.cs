@@ -5,6 +5,7 @@ using UnityEngine;
 public class BarmanController : MonoBehaviour
 {
     public GameObject thrownProp;
+    public AudioSource throwSound;
     public ObjectSpawner objectSpawner;
     Animator animator;
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class BarmanController : MonoBehaviour
     public void ThrowProp()
     {
         Instantiate(thrownProp, transform.position, Quaternion.identity);
-        // Play sound ?
+        throwSound.Play();  
     }
 
     public void SpawnObject()
