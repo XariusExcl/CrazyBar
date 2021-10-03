@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
     public GameObject retryPrompt;
+    public TMP_Text scoreText;
     public GameObject tutorialPrompt;
     public GameObject blackFade;
 
-    public void ShowPopup()
+    public void ShowPopup(int score, int hiScore, bool isHighScore)
     {
+        scoreText.text = "Score: " + score.ToString() + "\n" + "HiScore: " + hiScore.ToString();
+
         Animation anim = retryPrompt.GetComponent<Animation>();
         anim.Play("PopIn");
     }

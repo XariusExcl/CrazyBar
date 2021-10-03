@@ -5,24 +5,24 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public float defaultScore;
+    public int defaultScore;
     public TMP_Text scoreUI;
     public TMP_Text comboUI;
     public AudioSource comboSound;
-    float score;
-    float combo = 1f;
+    int combo = 1;
+    int score;
     GameObject lastProp;
 
-    public void AddToScore(float value, bool comboing)
+    public void AddToScore(int value, bool comboing)
     {
         if(comboing)
         {
             comboSound.Play();
             comboSound.pitch = comboSound.pitch + 0.1f; 
-            combo = combo + 1f;
+            combo++;
         } else {
             comboSound.pitch = 1f;
-            combo = 1f;
+            combo = 1;
         }
         score = score + combo;
         scoreUI.text = score.ToString();
@@ -37,5 +37,10 @@ public class ScoreManager : MonoBehaviour
     public void AddLastProp(GameObject newProp)
     {
         lastProp = newProp;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }
