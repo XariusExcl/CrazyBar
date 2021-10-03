@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour
     public PlateauController plateauController;
     public PlayerController playerController;
     public UIController uIController;
+    public AudioManager audioManager;
     bool isGameOver = false;
+    float sceneLoadedTime;
+    float gameOverTime;
     
     // called first
     void OnEnable()
@@ -25,6 +28,7 @@ public class GameManager : MonoBehaviour
         retryCount++;
         // Debug.Log("OnSceneLoaded: " + scene.name);
         // Debug.Log(mode);
+        sceneLoadedTime = Time.realtimeSinceStartup;
     }
 
     void Awake()
@@ -55,9 +59,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    float pitch;
     void Update()
     {
-        
+        if (!isGameOver)
+        {
+            pitch = (Time.realtimeSinceStartup-sceneLoadedTime)/100f+1f;
+            audioManager.SetMusicPitch(Mathf.Max(1f,pitch));
+        } else {
+            audioManager.SetMusicPitch(Mathf.Max(1f,pitch - (Time.realtimeSinceStartup-gameOverTime/10f)));
+        }
     }
 
     public void GameOver()
@@ -84,6 +95,7 @@ public class GameManager : MonoBehaviour
             }
 
             isGameOver = true;
+            gameOverTime = Time.realtimeSinceStartup;
             uIController.ShowPopup();
         }
     }

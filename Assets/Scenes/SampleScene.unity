@@ -646,6 +646,7 @@ MonoBehaviour:
   plateauController: {fileID: 1804222905}
   playerController: {fileID: 1450664571}
   uIController: {fileID: 45453591}
+  audioManager: {fileID: 1679999162}
 --- !u!1 &335658539
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,7 +874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &500952694
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2772,9 +2773,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 54b046fee1bad4b43ab4f83a23102178, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.48
+  m_Volume: 0.168
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
