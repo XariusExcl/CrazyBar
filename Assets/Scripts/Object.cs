@@ -43,6 +43,8 @@ public class Object : MonoBehaviour
 
                     // Prevent further collisions
                     isOnPlateau = true;
+
+					// Combo system if collision is on props
 					
                     if(isProp(col))
                     {
