@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         plateauController = GameObject.FindGameObjectWithTag("Plateau").GetComponent<PlateauController>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         uIController = GameObject.FindGameObjectWithTag("UI").GetComponent<UIController>();
+        audioManager = GameObject.FindGameObjectWithTag("Jukebox").GetComponent<AudioManager>();
         isGameOver = false;
 
         if (retryCount == 0)
