@@ -10,6 +10,7 @@ TagManager:
   - ScoreManager
   - ObjectSpawner
   - UI
+  - Jukebox
   layers:
   - Default
   - TransparentFX
