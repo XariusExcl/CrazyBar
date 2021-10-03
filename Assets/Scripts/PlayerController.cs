@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public Image staminaBar;
     float stamina = 100f;
 
+    public GameObject spriteHolder;
+
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -72,6 +74,6 @@ public class PlayerController : MonoBehaviour
     {
         freezeMovement = true;
         Destroy(hand);
-        // TODO: Animations quelconques
+        spriteHolder.GetComponent<Animator>().SetBool("Failed", true);
     }
 }
