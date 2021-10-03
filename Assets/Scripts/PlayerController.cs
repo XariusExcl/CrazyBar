@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public Image staminaBar;
     float stamina = 100f;
 
+    public GameObject spriteHolder;
+
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -59,6 +61,18 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            if(inputHorizontal > 0f) {
+                spriteHolder.GetComponent<SpriteRenderer>().flipX = false;
+            } else if(inputHorizontal < 0f) {
+                spriteHolder.GetComponent<SpriteRenderer>().flipX = true;
+            }
+
+            if(inputHorizontal != 0f) {
+                spriteHolder.GetComponent<Animator>().SetBool("Walking", true);
+            } else {
+                spriteHolder.GetComponent<Animator>().SetBool("Walking", false);
+            }
+
             rigidbody2D.MovePosition(
                 new Vector2(
                     rigidbody2D.position.x + inputHorizontal*Time.deltaTime*currentPlayerSpeed,
@@ -72,6 +86,6 @@ public class PlayerController : MonoBehaviour
     {
         freezeMovement = true;
         Destroy(hand);
-        // TODO: Animations quelconques
+        spriteHolder.GetComponent<Animator>().SetTrigger("Failed");
     }
 }
