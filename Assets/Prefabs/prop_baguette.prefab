@@ -71,7 +71,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampingRatio: -20.16
   sfxGood: {fileID: 1550329222112977228}
-  sfxBad: {fileID: 0}
   isOnPlateau: 0
 --- !u!212 &3212897718867288778
 SpriteRenderer:
@@ -138,8 +137,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.68, y: 0.35}
+  m_Offset: {x: 1.9182167e-10, y: 0.001609117}
+  m_Size: {x: 1.6800004, y: 0.36931035}
   m_Direction: 1
 --- !u!82 &1550329222112977228
 AudioSource:
