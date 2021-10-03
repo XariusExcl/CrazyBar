@@ -7,7 +7,7 @@ public class Object : MonoBehaviour
     GameManager gameManager;
     public float dampingRatio;
     new Rigidbody2D rigidbody2D;
-    
+    GameObject glow;
     ScoreManager scoreManager;
     public bool isOnPlateau = false;
     
@@ -16,11 +16,17 @@ public class Object : MonoBehaviour
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        glow = transform.GetChild(0).gameObject;
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         string colliderTag = col.transform.tag;
+
+        if (glow != null)
+        {
+            Destroy(glow);
+        }
 
         if (!isOnPlateau)
         {
@@ -43,8 +49,6 @@ public class Object : MonoBehaviour
 
                     // Prevent further collisions
                     isOnPlateau = true;
-                    
-                    Destroy(transform.GetChild(0).gameObject);
 
 					// Combo system if collision is on props
 					
@@ -64,10 +68,16 @@ public class Object : MonoBehaviour
             } else {
                 // Object fell on ground
                 gameManager.GameOver();
+
+                // Prevent further collisions
+                isOnPlateau = true;
             }
         } else if (colliderTag == "World") {
             // Object fell from plateau to ground
             gameManager.GameOver();
+
+            // Prevent further collisions
+            isOnPlateau = true;
         }
     }
 
