@@ -8,6 +8,7 @@ public class ObjectSpawner : MonoBehaviour
     public float spawnInterval;
     public float updateDifficultyEvery;
     public float updateSpeedBy;
+    public BarmanController barman;
     float currentIntervalRemaining;
 
     float counter = 0f;
@@ -24,10 +25,12 @@ public class ObjectSpawner : MonoBehaviour
         {
             if(currentIntervalRemaining < 0f)
             {
-                Instantiate(GetRandomProp(), new Vector2(Random.Range(-6f, 6f), 5f), Quaternion.identity);
+                barman.DoThrowAnimation();
+                
                 if(counter == updateDifficultyEvery) {
                     counter = 0f;
                     spawnInterval = spawnInterval / updateSpeedBy;
+                    barman.MultiplyAnimatorSpeed(updateSpeedBy);
                 } else {
                     counter += 1f;
                 }
@@ -36,6 +39,11 @@ public class ObjectSpawner : MonoBehaviour
                 currentIntervalRemaining -= Time.deltaTime;
             }
         }
+    }
+
+    public void SpawnObject()
+    {
+        Instantiate(GetRandomProp(), new Vector2(Random.Range(-6f, 6f), 6f), Quaternion.identity);
     }
 
     public void StopSpawning()
