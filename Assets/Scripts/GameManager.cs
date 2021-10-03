@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isGameOver)
         {
-            pitch = (Time.realtimeSinceStartup-sceneLoadedTime)/100f+1f;
+            pitch = (Time.realtimeSinceStartup-sceneLoadedTime)/100f+0.8f;
             audioManager.SetMusicPitch(Mathf.Max(1f,pitch));
         } else {
             audioManager.SetMusicPitch(Mathf.Max(1f,pitch - (Time.realtimeSinceStartup-gameOverTime/10f)));
