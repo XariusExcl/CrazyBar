@@ -7,6 +7,7 @@ public class Object : MonoBehaviour
     GameManager gameManager;
     public float dampingRatio;
     new Rigidbody2D rigidbody2D;
+    new Collider2D collider2D;
     GameObject glow;
     public AudioSource sfxGood;
     
@@ -17,6 +18,7 @@ public class Object : MonoBehaviour
     {
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        collider2D = GetComponent<Collider2D>();
         gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         glow = transform.GetChild(0).gameObject;
     }
@@ -87,5 +89,18 @@ public class Object : MonoBehaviour
     bool isProp(Collision2D col)
     {
         return col.transform.tag == "Object" && col.transform.GetComponent<Object>().isOnPlateau;
+    }
+
+    public void FlyToTable()
+    {
+        FixedJoint2D[] joints = GetComponents<FixedJoint2D>();
+        foreach (FixedJoint2D joint in joints)
+        {
+            Destroy(joint);
+        }
+        collider2D.enabled = false;
+        rigidbody2D.velocity = Vector2.up;
+        rigidbody2D.angularVelocity = 0f;
+        Destroy(this.gameObject, 1f);
     }
 }   

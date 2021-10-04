@@ -14,12 +14,13 @@ public class TablesController : MonoBehaviour
     public GameObject serveSprite;
     public Sprite[] stuffArray;
     public SpriteRenderer stuffRenderer; 
+    public PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<Collider2D>();
-        SetTimeBeforeServe();
+        SetNewTimeBeforeServe();
         collider.enabled = false; // WARN : vérifier si activer le collider pdt que le joueur est dedans capte la collision côté joueur
     }
 
@@ -34,10 +35,26 @@ public class TablesController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag == "Player")
+        {
+            playerController.SetCanServe(true);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.tag == "Player")
+        {
+            playerController.SetCanServe(false);
+        }
+    }
     public void AddNumberOfItems(int amount)
     {
         numberOfItems += amount;
-        // TODO: Show sprites on table
+
+        // Show sprites on table
         Sprite stuffToRender = stuffArray[0];
         if (numberOfItems > 1)
         {
@@ -50,13 +67,12 @@ public class TablesController : MonoBehaviour
             stuffToRender = stuffArray[4];
         }
         // Désolé je sais pas comment rendre ça plus joli et j'ai pas le temps d'y réfléchir
-
         stuffRenderer.sprite = stuffToRender;
         
-        SetTimeBeforeServe();
+        SetNewTimeBeforeServe();
     }
 
-    void SetTimeBeforeServe()
+    void SetNewTimeBeforeServe()
     {
         serveSprite.SetActive(false);
         canServe = false;
