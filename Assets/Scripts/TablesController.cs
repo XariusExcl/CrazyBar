@@ -80,7 +80,7 @@ public class TablesController : MonoBehaviour
             // Désolé je sais pas comment rendre ça plus joli et j'ai pas le temps d'y réfléchir
             stuffRenderer.sprite = stuffToRender;
 
-            scoreManager.AddToScore(numberOfItems, false);
+            scoreManager.AddToScore(amount, false);
             // TODO : Play sound ?
             
             SetNewTimeBeforeServe();

@@ -24,7 +24,7 @@ public class ScoreManager : MonoBehaviour
             comboSound.pitch = 1f;
             combo = 1;
         }
-        score = score + combo;
+        score += value + combo - 1;
         scoreUI.text = score.ToString();
         comboUI.text = combo.ToString() + "x";
     }
