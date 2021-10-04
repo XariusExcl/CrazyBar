@@ -39,6 +39,10 @@ public class Object : MonoBehaviour
                 ContactPoint2D contact = col.GetContact(0);
                 float contactAngle = Vector2.Angle(contact.normal, Vector2.right);
 
+                Debug.DrawRay(contact.point, contact.normal, Color.yellow, 2f);
+                Debug.DrawRay(contact.point, Vector2.right, Color.red, 2f);
+                Debug.Log(contactAngle);
+
                 // If angle good enough, stick to plateau/object
                 if (contactAngle > 45f && contactAngle < 135f)
                 {
