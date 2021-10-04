@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     bool canServe = false;
 
     public GameObject spriteHolder;
+    public TablesController tablesController;
 
     void Start()
     {
@@ -71,12 +72,22 @@ public class PlayerController : MonoBehaviour
                 {
                     // Move objects to Table
                     GameObject[] objects;
+                    int objectsOnPlateauCount = 0;
                     objects = GameObject.FindGameObjectsWithTag("Object");
                     
                     foreach(GameObject obj in objects)
                     {
-                        obj.GetComponent<Object>().FlyToTable();
+                        Object objectScript = obj.GetComponent<Object>();
+                        if (objectScript.isOnPlateau)
+                        {
+                            objectScript.FlyToTable();
+                            objectsOnPlateauCount++;
+                        }
                     }
+
+                    tablesController.AddNumberOfItems(objectsOnPlateauCount);
+
+                    canServe = false;
                 }
             }
 

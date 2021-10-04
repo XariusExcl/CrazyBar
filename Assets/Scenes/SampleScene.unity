@@ -376,8 +376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a66d3925b940ef4ea0be8b917a8697a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeBeforeServe: 15
-  maxTimeBeforeServe: 30
+  minTimeBeforeServe: 5
+  maxTimeBeforeServe: 10
   canServe: 0
   serveSprite: {fileID: 673641151}
   stuffArray:
@@ -3108,6 +3108,7 @@ MonoBehaviour:
   fail: {fileID: 1450664575}
   staminaBar: {fileID: 933223237}
   spriteHolder: {fileID: 736198073}
+  tablesController: {fileID: 180534178}
 --- !u!4 &1450664572
 Transform:
   m_ObjectHideFlags: 0

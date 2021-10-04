@@ -99,8 +99,22 @@ public class Object : MonoBehaviour
             Destroy(joint);
         }
         collider2D.enabled = false;
-        rigidbody2D.velocity = Vector2.up;
         rigidbody2D.angularVelocity = 0f;
-        Destroy(this.gameObject, 1f);
+        rigidbody2D.velocity = Vector2.up * 6f + (Vector2.left * (4.5f + transform.position.x)* .8f); // Left force based on distance to tables
+        
+        StartCoroutine(Despawn());
+        // TODO : si Game Over, faire tomber les items par terre ?
+    }
+
+    IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(1.7f);
+
+        if (!gameManager.GetIsGameOver())
+        {
+            Destroy(this.gameObject);
+        } else {
+            collider2D.enabled = true;
+        }
     }
 }   
