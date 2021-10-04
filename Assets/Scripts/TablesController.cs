@@ -19,6 +19,8 @@ public class TablesController : MonoBehaviour
     public AudioSource sfx;
     public AudioSource dishes;
     GameManager gameManager;
+
+    public GameObject ticker;
     
     float exponentialScore;
 
@@ -81,6 +83,8 @@ public class TablesController : MonoBehaviour
             scoreManager.AddToScore((int)exponentialScore, false);
             
             dishes.Play();
+            
+            
             
             SetNewTimeBeforeServe();
         }
