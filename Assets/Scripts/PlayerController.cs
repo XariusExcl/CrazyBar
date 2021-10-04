@@ -18,8 +18,10 @@ public class PlayerController : MonoBehaviour
     float currentPlayerSpeed;
     public Image staminaBar;
     float stamina = 100f;
+    bool canServe = false;
 
     public GameObject spriteHolder;
+    public TablesController tablesController;
 
     void Start()
     {
@@ -62,6 +64,35 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            // Serve Input
+
+            if(canServe)
+            {
+                if (Input.GetButton("Serve"))
+                {
+                    // Move objects to Table
+                    GameObject[] objects;
+                    int objectsOnPlateauCount = 0;
+                    objects = GameObject.FindGameObjectsWithTag("Object");
+                    
+                    foreach(GameObject obj in objects)
+                    {
+                        Object objectScript = obj.GetComponent<Object>();
+                        if (objectScript.isOnPlateau)
+                        {
+                            objectScript.FlyToTable();
+                            objectsOnPlateauCount++;
+                        }
+                    }
+
+                    tablesController.AddNumberOfItems(objectsOnPlateauCount);
+
+                    canServe = false;
+                }
+            }
+
+            // Movement System
+
             if(inputHorizontal > 0f) {
                 spriteHolder.GetComponent<SpriteRenderer>().flipX = false;
             } else if(inputHorizontal < 0f) {
@@ -73,6 +104,8 @@ public class PlayerController : MonoBehaviour
             } else {
                 spriteHolder.GetComponent<Animator>().SetBool("Walking", false);
             }
+
+            // Movement Rigidbody
 
             rigidbody2D.MovePosition(
                 new Vector2(
@@ -89,5 +122,10 @@ public class PlayerController : MonoBehaviour
         fail.Play();
         Destroy(hand);
         spriteHolder.GetComponent<Animator>().SetTrigger("Failed");
+    }
+
+    public void SetCanServe(bool value)
+    {
+        canServe = value;
     }
 }

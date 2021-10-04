@@ -7,6 +7,7 @@ public class Object : MonoBehaviour
     GameManager gameManager;
     public float dampingRatio;
     new Rigidbody2D rigidbody2D;
+    new Collider2D collider2D;
     GameObject glow;
     public AudioSource sfxGood;
     
@@ -17,6 +18,7 @@ public class Object : MonoBehaviour
     {
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        collider2D = GetComponent<Collider2D>();
         gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         glow = transform.GetChild(0).gameObject;
     }
@@ -87,5 +89,32 @@ public class Object : MonoBehaviour
     bool isProp(Collision2D col)
     {
         return col.transform.tag == "Object" && col.transform.GetComponent<Object>().isOnPlateau;
+    }
+
+    public void FlyToTable()
+    {
+        FixedJoint2D[] joints = GetComponents<FixedJoint2D>();
+        foreach (FixedJoint2D joint in joints)
+        {
+            Destroy(joint);
+        }
+        collider2D.enabled = false;
+        rigidbody2D.angularVelocity = 0f;
+        rigidbody2D.velocity = Vector2.up * 6f + (Vector2.left * (4.5f + transform.position.x)* .8f); // Left force based on distance to tables
+        
+        StartCoroutine(Despawn());
+        // TODO : si Game Over, faire tomber les items par terre ?
+    }
+
+    IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(1.7f);
+
+        if (!gameManager.getIsGameOver())
+        {
+            Destroy(this.gameObject);
+        } else {
+            collider2D.enabled = true;
+        }
     }
 }   
