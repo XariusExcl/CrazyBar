@@ -66,18 +66,9 @@ public class TablesController : MonoBehaviour
             numberOfItems += amount;
 
             // Show sprites on table
-            Sprite stuffToRender = stuffArray[0];
-            if (numberOfItems > 0)
-            {
-                stuffToRender = stuffArray[1];
-            } else if (numberOfItems > 10) {
-                stuffToRender = stuffArray[2];
-            }  else if (numberOfItems > 20) {
-                stuffToRender = stuffArray[3];
-            }else if (numberOfItems > 30) {
-                stuffToRender = stuffArray[4];
-            }
-            // Désolé je sais pas comment rendre ça plus joli et j'ai pas le temps d'y réfléchir
+            Mathf.Clamp(numberOfItems/4, 0, 8);
+
+            Sprite stuffToRender = stuffArray[Mathf.Clamp((numberOfItems+3)/6, 0, stuffArray.Length-1)];
             stuffRenderer.sprite = stuffToRender;
 
             scoreManager.AddToScore(amount, false);
