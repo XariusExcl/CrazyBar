@@ -112,4 +112,9 @@ public class GameManager : MonoBehaviour
             uIController.ShowPopup(score, hiScore, isHighScore);
         }
     }
+
+    public bool getIsGameOver()
+    {
+        return isGameOver;
+    }
 }

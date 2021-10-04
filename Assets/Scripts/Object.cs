@@ -32,7 +32,7 @@ public class Object : MonoBehaviour
 
         if (!isOnPlateau)
         {
-            if (colliderTag == "Plateau" || isProp(col))
+            if (colliderTag == "Plateau" || isProp(col) && gameManager.getIsGameOver() == false)
             {
                 ContactPoint2D contact = col.GetContact(0);
                 float contactAngle = Vector2.Angle(contact.normal, Vector2.right);
