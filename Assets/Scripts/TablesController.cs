@@ -15,6 +15,7 @@ public class TablesController : MonoBehaviour
     public Sprite[] stuffArray;
     public SpriteRenderer stuffRenderer; 
     public PlayerController playerController;
+    public ScoreManager scoreManager;
     GameManager gameManager;
 
     // Start is called before the first frame update
@@ -79,7 +80,8 @@ public class TablesController : MonoBehaviour
             // Désolé je sais pas comment rendre ça plus joli et j'ai pas le temps d'y réfléchir
             stuffRenderer.sprite = stuffToRender;
 
-            Debug.Log(numberOfItems);
+            scoreManager.AddToScore(numberOfItems, false);
+            // TODO : Play sound ?
             
             SetNewTimeBeforeServe();
         }

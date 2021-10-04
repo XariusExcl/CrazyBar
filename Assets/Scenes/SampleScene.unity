@@ -376,8 +376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a66d3925b940ef4ea0be8b917a8697a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeBeforeServe: 5
-  maxTimeBeforeServe: 10
+  minTimeBeforeServe: 15
+  maxTimeBeforeServe: 25
   canServe: 0
   serveSprite: {fileID: 673641151}
   stuffArray:
@@ -387,6 +387,7 @@ MonoBehaviour:
   - {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   stuffRenderer: {fileID: 1999072817}
   playerController: {fileID: 1450664571}
+  scoreManager: {fileID: 1353728722}
 --- !u!61 &180534179
 BoxCollider2D:
   m_ObjectHideFlags: 0
