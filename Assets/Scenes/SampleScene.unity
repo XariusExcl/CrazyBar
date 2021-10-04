@@ -589,8 +589,8 @@ MonoBehaviour:
   - {fileID: 1450448184365515472, guid: 4b60843f2c20c44659a6a566430e0552, type: 3}
   - {fileID: 1450448184365515472, guid: 283d13c99e594420ebdaeb0024ab0c52, type: 3}
   spawnInterval: 3
-  updateDifficultyEvery: 3
-  updateSpeedBy: 1.1
+  updateDifficultyEvery: 5
+  updateSpeedBy: 0.15
   freefall: {fileID: 251105504}
   barman: {fileID: 638215422}
 --- !u!4 &251105503
@@ -3694,7 +3694,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 973733793}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1664734730
 BoxCollider2D:

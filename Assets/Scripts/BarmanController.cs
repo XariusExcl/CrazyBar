@@ -32,6 +32,6 @@ public class BarmanController : MonoBehaviour
 
     public void MultiplyAnimatorSpeed(float speed)
     {
-        animator.speed *= speed;
+        animator.speed += speed;
     }
 }

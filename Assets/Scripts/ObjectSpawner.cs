@@ -30,7 +30,7 @@ public class ObjectSpawner : MonoBehaviour
                 
                 if(counter == updateDifficultyEvery) {
                     counter = 0f;
-                    spawnInterval = spawnInterval / updateSpeedBy;
+                    spawnInterval = spawnInterval - updateSpeedBy;
                     barman.MultiplyAnimatorSpeed(updateSpeedBy);
                 } else {
                     counter += 1f;
