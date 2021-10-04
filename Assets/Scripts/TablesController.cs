@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TablesController : MonoBehaviour
@@ -16,7 +15,12 @@ public class TablesController : MonoBehaviour
     public SpriteRenderer stuffRenderer; 
     public PlayerController playerController;
     public ScoreManager scoreManager;
+    
+    public AudioSource sfx;
+    public AudioSource dishes;
     GameManager gameManager;
+    
+    float exponentialScore;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +59,7 @@ public class TablesController : MonoBehaviour
     }
     public void AddNumberOfItems(int amount)
     {
+        sfx.Play();
         StartCoroutine(AddNumberOfItemsDelay(amount));
     }
 
@@ -71,8 +76,11 @@ public class TablesController : MonoBehaviour
             Sprite stuffToRender = stuffArray[Mathf.Clamp((numberOfItems+3)/6, 0, stuffArray.Length-1)];
             stuffRenderer.sprite = stuffToRender;
 
-            scoreManager.AddToScore(amount, false);
-            // TODO : Play sound ?
+            exponentialScore = amount + Mathf.Pow((int)Mathf.Round(amount / 5) + 1, 2);
+
+            scoreManager.AddToScore((int)exponentialScore, false);
+            
+            dishes.Play();
             
             SetNewTimeBeforeServe();
         }
